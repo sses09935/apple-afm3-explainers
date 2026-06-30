@@ -1,0 +1,40 @@
+/* theme-general.css — 普羅大眾版：溫暖的橙，大字、大圖、寬鬆行距 */
+:root {
+  --accent: #e8730c;
+  --accent-soft: #fdf0e3;
+  --ink: #2a2017;
+  --ink-soft: #574b3e;
+  --rule: #ecdcc9;
+  --code-bg: #fbf3ea;
+  --cite: #8a7459;
+  --cover-bg: linear-gradient(135deg, #b8470a 0%, #f29c33 100%);
+  --cover-fg: #ffffff;
+  --page-margin: 20mm;
+  --accent-strong: #a8400a;
+}
+html { font-size: 12.5pt; }            /* 大字，零術語門檻 */
+body { line-height: 1.9; }
+/* 手冊版式：每個 ## 主題自新頁起，搭配大圖，一頁一概念。
+   # 主線分隔不單獨佔頁。 */
+main h2 { break-before: page; }
+main h1 { break-before: auto; }
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.55rem; border-bottom-width: 3px; }
+/* 大眾版以大圖為主；圖表容器更柔和、更圓潤 */
+figure { margin: 1.7em 0; }
+figure svg, figure img { max-width: 92%; }
+.diagram-figure {
+  border-radius: 16px;
+  border-top-width: 4px;
+  background: var(--accent-soft);
+  padding: 1.15em 1.15em 1em;
+}
+figcaption { text-align: center; font-size: .9rem; }
+/* 來源仍看得見，但邊框柔和、不壓迫閱讀 */
+.source-ref { border-color: var(--rule); font-weight: 700; }
+@media screen {
+  .diagram-figure svg.inline-diagram { max-width: 100%; }
+}
+/* FAQ 問句加重，更像大眾解說的提問 */
+p > strong:first-child { color: var(--accent-strong); font-size: 1.05em; }
+blockquote { border-radius: 12px; }

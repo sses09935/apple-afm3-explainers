@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="'PingFang TC','Noto Sans CJK TC','Noto Sans TC',sans-serif" role="img" aria-label="五個分工的幫手">
+  <defs><style>.t{fill:#2a2017}.s{fill:#574b3e;font-size:13px}.lbl{font-size:14px;font-weight:700;fill:#2a2017}</style></defs>
+  <text x="20" y="30" class="t" font-size="17" font-weight="700">五個分工的幫手</text>
+
+  <!-- device zone -->
+  <rect x="24" y="56" width="330" height="270" rx="16" fill="#fdf0e3" stroke="#e8730c" stroke-width="2"/>
+  <text x="44" y="84" class="lbl">📱 住在你的裝置裡</text>
+
+  <g>
+    <circle cx="120" cy="181" r="46" fill="#f29c33"/>
+    <text x="120" y="181" text-anchor="middle" dominant-baseline="central" font-size="34">🧠</text>
+    <text x="120" y="252" text-anchor="middle" class="lbl">基本款</text>
+    <text x="120" y="272" text-anchor="middle" class="s">日常小事</text>
+  </g>
+  <g>
+    <circle cx="262" cy="181" r="46" fill="#e8730c"/>
+    <text x="262" y="181" text-anchor="middle" dominant-baseline="central" font-size="34">🦾</text>
+    <text x="262" y="252" text-anchor="middle" class="lbl">更強版</text>
+    <text x="262" y="272" text-anchor="middle" class="s">會看圖、會說話</text>
+  </g>
+
+  <!-- cloud zone -->
+  <rect x="406" y="56" width="330" height="270" rx="16" fill="#fff7ee" stroke="#b8470a" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="426" y="84" class="lbl">☁️ 在很安全的雲端</text>
+
+  <g>
+    <circle cx="486" cy="178" r="40" fill="#f29c33"/>
+    <text x="486" y="178" text-anchor="middle" dominant-baseline="central" font-size="28">⚡</text>
+    <text x="486" y="232" text-anchor="middle" class="s">雲端主力</text>
+  </g>
+  <g>
+    <circle cx="572" cy="178" r="40" fill="#f29c33"/>
+    <text x="572" y="178" text-anchor="middle" dominant-baseline="central" font-size="28">🎨</text>
+    <text x="572" y="232" text-anchor="middle" class="s">畫圖的</text>
+  </g>
+  <g>
+    <circle cx="658" cy="178" r="40" fill="#b8470a"/>
+    <text x="658" y="178" text-anchor="middle" dominant-baseline="central" font-size="28">🚀</text>
+    <text x="658" y="232" text-anchor="middle" class="s">最強的</text>
+  </g>
+  <text x="571" y="268" text-anchor="middle" class="s">處理最難的任務</text>
+
+  <text x="380" y="350" text-anchor="middle" class="s">和 Google 合作打造，橫跨裝置與雲端。對應 KB-001–006 [S01]</text>
+</svg>

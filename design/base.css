@@ -1,0 +1,713 @@
+/* base.css — 三份文件共用排版基礎（Markdown → HTML → PDF, Playwright Chromium 列印）
+   色票與封面由各 theme-*.css 覆寫。CJK：macOS 用系統 PingFang TC；Linux/CI 用 Noto Sans/Serif CJK TC。 */
+
+:root {
+  --font-sans: "PingFang TC", "Noto Sans CJK TC", "Noto Sans TC", "Hiragino Sans GB",
+    "Microsoft JhengHei", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Menlo", "Consolas", "Noto Sans Mono CJK TC", monospace;
+
+  /* defaults; themes override --accent, --accent-soft, --cover-bg, --cover-fg */
+  --ink: #1d1d1f;
+  --ink-soft: #4a4a4f;
+  --rule: #d8d8dd;
+  --accent: #0a6cff;
+  --accent-soft: #eaf2ff;
+  --code-bg: #f5f5f7;
+  --cite: #6a6a70;
+  --page-margin: 18mm;
+  --paper: #ffffff;
+  --paper-soft: #f7f9fc;
+  --shadow-soft: 0 12px 32px rgba(20, 28, 45, .08);
+
+  /* derived/citation/status tokens — themes may override --accent-strong with a darker accent.
+     Fixed hex values are used for status pills so print (Playwright Chromium) stays predictable. */
+  --accent-strong: var(--accent);
+  --source-bg: var(--accent-soft);
+  --source-border: var(--accent);
+  --status-beta-bg: #fff7db;
+  --status-beta-fg: #7a4a00;
+  --status-beta-border: #e6c25c;
+  --status-forthcoming-bg: #eaf0ff;
+  --status-forthcoming-fg: #324bb0;
+  --status-forthcoming-border: #b6c6f0;
+  --status-boundary-bg: #fff1f1;
+  --status-boundary-fg: #8a1f1f;
+  --status-boundary-border: #efbcbc;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ---- page setup ---- */
+/* @page margin 必須為字面值（Chromium 列印不可靠支援 @page 內的 var()） */
+@page {
+  size: A4;
+  margin: 18mm;
+}
+
+html { font-size: 11pt; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  line-height: 1.72;
+  margin: 0;
+  background: var(--paper);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  text-wrap: pretty;
+}
+
+/* ---- headings ---- */
+h1, h2, h3, h4 { line-height: 1.3; font-weight: 700; color: var(--ink); }
+h1 { font-size: 1.9rem; margin: 0 0 .6em; }
+h2 {
+  font-size: 1.4rem;
+  margin: 1.7em 0 .5em;
+  padding-bottom: .25em;
+  border-bottom: 2px solid var(--accent);
+}
+h3 { font-size: 1.12rem; margin: 1.3em 0 .35em; color: var(--accent); }
+h4 { font-size: 1rem; margin: 1.1em 0 .3em; color: var(--ink-soft); }
+
+/* keep section starts tidy across page breaks */
+h1, h2, h3, h4 { break-after: avoid; }
+/* 主線分隔（#）換頁；子節（##）順流，避免大量空白頁。
+   封面已 break-after，故 main 首個 h1 的 break-before 在新頁頂端為 no-op。 */
+h1 { break-before: page; }
+
+p { margin: .62em 0; }
+strong { font-weight: 700; }
+
+/* ---- citations [S0X] rendered from inline code ---- */
+code {
+  font-family: var(--font-mono);
+  font-size: .86em;
+  background: var(--code-bg);
+  padding: .08em .35em;
+  border-radius: 4px;
+}
+/* source codes look like [S01] — tint them so they read as citations */
+code:where(:not(pre code)) { color: var(--cite); }
+
+.source-ref {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: .82em;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--accent-strong);
+  background: var(--source-bg);
+  border: 1px solid var(--source-border);
+  border-radius: 999px;
+  padding: .05em .5em;
+  vertical-align: .06em;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.source-ref:hover,
+.source-ref:focus-visible {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent-strong);
+  text-decoration: none;
+  outline: none;
+}
+.source-ref + .source-ref { margin-left: .2em; }
+.source-anchor { scroll-margin-top: 86px; }
+
+/* when one or more source refs sit inside an inline <code> (multi-code citations like
+   `[S01][S02]`), drop the surrounding code chrome so the pills read cleanly. */
+code:has(> .source-ref) { background: none; border: 0; padding: 0; }
+
+/* status-sensitive labels (official-beta / forthcoming / reported-excluded) rendered as
+   pills by md2html. Text is unchanged; only a class is added. Pills make provisional /
+   caution status visually distinct from finalized `official`. */
+code.status-pill {
+  font-weight: 700;
+  font-size: .82em;
+  border-radius: 999px;
+  padding: .06em .55em;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+  letter-spacing: .01em;
+  vertical-align: .05em;
+}
+code.status-beta { background: var(--status-beta-bg); color: var(--status-beta-fg); border-color: var(--status-beta-border); }
+code.status-forthcoming { background: var(--status-forthcoming-bg); color: var(--status-forthcoming-fg); border-color: var(--status-forthcoming-border); }
+code.status-excluded { background: var(--status-boundary-bg); color: var(--status-boundary-fg); border-color: var(--status-boundary-border); }
+
+pre {
+  background: var(--code-bg);
+  padding: .8em 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  border: 1px solid var(--rule);
+}
+pre code { background: none; padding: 0; color: var(--ink); }
+
+/* ---- lists ---- */
+ul, ol { margin: .5em 0; padding-left: 1.5em; }
+li { margin: .25em 0; }
+/* task-list checkboxes (評估清單) */
+li input[type="checkbox"] { margin-right: .5em; }
+
+/* ---- blockquotes: disclaimers / captions / callouts ---- */
+blockquote {
+  margin: 1.1em 0;
+  padding: .7em 1.1em .7em 1.15em;
+  background: var(--accent-soft);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  color: var(--ink-soft);
+  font-size: .94rem;
+  break-inside: avoid;
+}
+blockquote p { margin: .35em 0; }
+blockquote strong { color: var(--accent-strong); }
+
+/* ---- callout variants (blockquote classified by md2html; quiet in Reading/print) ----
+   Reading Mode keeps these restrained: only the left rail (and lead-strong) is recolored so
+   boundary/warning/misconception read as distinct but not all like warning boxes. Audit Mode
+   (screen only, below) amplifies them. */
+.callout { break-inside: avoid; }
+.callout-boundary,
+.callout-misconception { border-left-color: var(--status-boundary-border); }
+.callout-boundary > p:first-child strong,
+.callout-misconception > p:first-child strong { color: var(--status-boundary-fg); }
+.callout-warning { border-left-color: var(--status-beta-border); }
+.callout-warning > p:first-child strong { color: var(--status-beta-fg); }
+.callout-summary { border-left-color: var(--accent-strong); }
+
+/* ---- tables ---- */
+.table-wrap {
+  margin: 1em 0;
+  break-inside: avoid;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0;
+  font-size: .92rem;
+}
+th, td { border: 1px solid var(--rule); padding: .5em .7em; text-align: left; vertical-align: top; }
+th {
+  background: var(--accent-soft);
+  font-weight: 700;
+  color: var(--accent-strong);
+  border-bottom: 2px solid var(--accent);
+}
+tr:nth-child(even) td { background: var(--paper-soft); }
+
+/* ---- figures (D / M series SVG, inlined at build) ---- */
+figure { margin: 1.5em 0; text-align: center; break-inside: avoid; }
+.diagram-figure {
+  padding: 1em 1em .85em;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--paper-soft);
+  break-inside: avoid;
+}
+figure svg, figure img,
+.diagram-figure svg.inline-diagram {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+figcaption {
+  margin-top: .7em;
+  padding-top: .5em;
+  border-top: 1px solid var(--rule);
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--cite);
+  text-align: left;
+  break-before: avoid;
+}
+.diagram-figure.missing { border-top-color: var(--status-boundary-border); }
+.missing-fig { padding: 1.4em; color: var(--status-boundary-fg); font-size: .9rem; }
+
+hr { border: none; border-top: 1px solid var(--rule); margin: 1.6em 0; }
+
+a { color: var(--accent); text-decoration: none; }
+
+/* ---- cover page (injected by build) ---- */
+/* 不使用負 margin 出血（列印不穩）；以填滿內容區的色塊呈現。 */
+.cover {
+  break-after: page;
+  min-height: 255mm;            /* A4 內容區高度（297 - 2×18 - 邊界寬容） */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--cover-bg, var(--accent));
+  color: var(--cover-fg, #fff);
+  padding: 16mm 14mm;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+.cover .kicker {
+  font-size: 1rem;
+  letter-spacing: .08em;
+  opacity: .92;
+  margin-bottom: .9em;
+  padding-bottom: .7em;
+  border-bottom: 1px solid currentColor;
+  max-width: max-content;
+}
+.cover h1 { font-size: 2.7rem; color: inherit; border: none; margin: 0 0 .35em; line-height: 1.2; }
+.cover .audience {
+  display: inline-block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  opacity: .98;
+  margin-bottom: 1.5em;
+  padding: .18em .7em;
+  border: 1.5px solid currentColor;
+  border-radius: 8px;
+}
+.cover .meta { font-size: .9rem; opacity: .88; line-height: 1.9; }
+.cover .badge {
+  display: inline-block; margin-top: 1.6em; padding: .4em .9em;
+  border: 1.5px solid currentColor; border-radius: 999px; font-size: .8rem; opacity: .9;
+}
+
+/* ---- web (screen) view: same HTML serves as the web 版 ---- */
+@media screen {
+  html { font-size: 16px; scroll-behavior: smooth; }
+  html, body { overflow-x: hidden; }
+  body {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0 24px 80px;
+    background: var(--paper);
+  }
+  .reader-layout {
+    width: min(100%, 1340px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .document-body {
+    width: 100%;
+    max-width: 980px;
+    min-width: 0;
+    margin: 0 auto;
+    padding-top: 28px;
+  }
+  main { min-width: 0; }
+  .cover { min-height: auto; border-radius: 16px; padding: 48px 42px; margin-bottom: 34px; }
+  .cover h1 { font-size: 2.3rem; }
+  main h1, main h2 { break-before: auto; }   /* 分頁僅作用於列印 */
+  h1 { font-size: 2.05rem; margin-bottom: .7em; }
+  h2 { font-size: 1.48rem; margin-top: 2.05em; padding-bottom: .32em; }
+  h3 { font-size: 1.16rem; margin-top: 1.55em; }
+  p { margin: .72em 0; }
+  ul, ol { margin: .7em 0; }
+  li { margin: .35em 0; }
+  figure { margin: 1.7em 0 1.9em; }
+  figure svg, figure img,
+  .diagram-figure svg.inline-diagram { max-width: 100%; }
+  table { font-size: .95rem; }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: var(--paper);
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-wrap table {
+    min-width: 760px;
+    border: 0;
+  }
+  .table-wrap th:first-child,
+  .table-wrap td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--paper);
+    box-shadow: 1px 0 0 var(--rule);
+  }
+  .table-wrap th:first-child { background: var(--accent-soft); z-index: 2; }
+
+  /* 導覽列（返回首頁 + 各受眾版本 + 資料來源 + 語言切換） */
+  .topnav {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+    margin: 0 -24px; padding: 11px max(20px, calc((100vw - 1340px) / 2 + 24px));
+    background: rgba(255,255,255,.94); backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 1px 0 var(--rule), 0 6px 16px rgba(20, 28, 45, .06);
+    font-size: .86rem;
+  }
+  .topnav .home {
+    font-weight: 700; color: var(--accent); text-decoration: none;
+    padding: .15em .1em; border-radius: 6px;
+  }
+  .topnav .home:hover { color: var(--accent-strong); }
+  .topnav .navlinks { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-left: auto; }
+  .topnav .navlinks a { color: var(--ink-soft); text-decoration: none; padding: .1em .15em; }
+  .topnav .navlinks a:hover { color: var(--accent); }
+  .topnav a[aria-current="page"] { color: var(--accent-strong); font-weight: 700; border-bottom: 2px solid var(--accent); }
+  .topnav .lang {
+    margin-left: 12px; color: var(--accent); text-decoration: none; font-weight: 700;
+    border: 1.5px solid var(--accent); border-radius: 999px; padding: .12em .7em;
+    transition: background .15s, color .15s;
+  }
+  .topnav .lang:hover, .topnav .lang:focus-visible {
+    background: var(--accent); border-color: var(--accent); color: #fff; outline: none;
+  }
+
+  /* 跨版交叉引用連結 */
+  a.xref { color: var(--accent); text-decoration: underline; }
+
+  .reader-tools {
+    width: 100%;
+    max-width: 980px;
+    margin: 18px auto 0;
+  }
+  .reader-tools-inner {
+    background: var(--paper-soft);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: var(--shadow-soft);
+  }
+  .search-label,
+  .toc-title {
+    display: block;
+    font-size: .82rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .page-search {
+    width: 100%;
+    min-height: 40px;
+    margin: 8px 0 8px;
+    padding: .55em .75em;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    color: var(--ink);
+    background: var(--paper);
+    font: inherit;
+    font-size: .92rem;
+  }
+  .page-search:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .search-status {
+    min-height: 1.3em;
+    font-size: .78rem;
+    color: var(--cite);
+  }
+  .search-results {
+    display: grid;
+    gap: 6px;
+    margin: 4px 0 12px;
+  }
+  .search-hit {
+    display: block;
+    padding: 8px 9px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color .12s, background .12s;
+  }
+  .search-hit:hover,
+  .search-hit:focus-visible { border-color: var(--accent); background: var(--accent-soft); outline: none; }
+  .search-hit span {
+    display: block;
+    font-size: .84rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .search-hit small {
+    display: block;
+    margin-top: 2px;
+    color: var(--ink-soft);
+    font-size: .76rem;
+    line-height: 1.4;
+  }
+  .toc {
+    border-top: 1px solid var(--rule);
+    padding-top: 12px;
+  }
+  .toc-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    max-height: 42vh;
+    overflow: auto;
+  }
+  .toc-list li { margin: 0; }
+  .toc-list a {
+    display: block;
+    padding: 5px 8px;
+    border-radius: 7px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    line-height: 1.35;
+    font-size: .88rem;
+  }
+  .toc-list a:hover {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .toc-l2 a { padding-left: 18px; font-size: .84rem; }
+  .toc-l3 a { padding-left: 30px; font-size: .78rem; color: var(--cite); }
+  .section-heading { scroll-margin-top: 72px; }
+
+  /* 資料來源頁 */
+  .page-title { margin-top: .1em; }
+  .lead { color: var(--ink-soft); }
+  main a[target="_blank"] { word-break: break-all; }
+}
+
+@media screen and (min-width: 1180px) {
+  .reader-layout {
+    grid-template-columns: 260px minmax(0, 980px);
+    align-items: start;
+  }
+  .reader-tools {
+    position: sticky;
+    top: 58px;
+    max-height: calc(100vh - 76px);
+    overflow: auto;
+    margin: 28px 0 0;
+  }
+  .document-body { margin: 0; }
+  .reader-tools-inner { box-shadow: none; }
+  .toc-list { max-height: calc(100vh - 280px); }
+}
+
+@media screen and (min-width: 1500px) {
+  .reader-layout {
+    width: min(100%, 1440px);
+    grid-template-columns: 280px minmax(0, 1040px);
+  }
+  .document-body { max-width: 1040px; }
+}
+
+@media screen and (max-width: 760px) {
+  body { padding: 0 16px 64px; }
+  .topnav {
+    margin: 0 -16px;
+    padding: 10px 16px;
+  }
+  .topnav .navlinks {
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+  }
+  .topnav .navlinks a { white-space: nowrap; }
+  .topnav .lang { margin-left: auto; }
+  .reader-layout { gap: 16px; }
+  .reader-tools { margin-top: 14px; }
+  .reader-tools-inner { padding: 12px; }
+  .document-body { padding-top: 8px; }
+  .cover {
+    border-radius: 12px;
+    padding: 32px 24px;
+    margin-bottom: 24px;
+  }
+  .cover .kicker { font-size: .82rem; letter-spacing: .04em; }
+  .cover h1 { font-size: 1.72rem; }
+  .cover .audience { font-size: 1.12rem; }
+  h1 { font-size: 1.62rem; }
+  h2 { font-size: 1.28rem; margin-top: 1.7em; }
+  h3 { font-size: 1.06rem; }
+  blockquote { padding: .65em .85em; }
+  .diagram-figure {
+    margin-left: -4px;
+    margin-right: -4px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .table-wrap {
+    margin-left: -16px;
+    margin-right: -16px;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+  .table-wrap table { min-width: 680px; }
+  th, td { padding: .55em .7em; }
+  .toc-list { max-height: 240px; }
+}
+
+/* =====================================================================================
+   Reading Mode / Audit Mode (web/screen only). DOM state: <html data-reader-mode="...">.
+   Print/PDF carry no data-reader-mode attribute, so none of these rules ever reach a PDF.
+   Reading = easier to read (default). Audit = easier to check (source/status/boundary pop).
+   ===================================================================================== */
+@media screen {
+  /* ---- reader-mode toggle (segmented two-state control) ---- */
+  .reader-mode { margin: 0 0 12px; }
+  .reader-mode-title,
+  .status-legend-title {
+    display: block;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: var(--cite);
+    margin-bottom: 6px;
+  }
+  .reader-mode-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px;
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+  }
+  .rm-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--ink-soft);
+    font: inherit;
+    cursor: pointer;
+    text-align: center;
+    transition: background .12s, color .12s, border-color .12s, box-shadow .12s;
+  }
+  .rm-btn .rm-name { font-size: .9rem; font-weight: 700; line-height: 1.2; }
+  .rm-btn .rm-hint { font-size: .68rem; color: var(--cite); line-height: 1.2; }
+  .rm-btn:hover { color: var(--accent); }
+  .rm-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  /* active button reflects the current data-reader-mode (set by the early script, no JS flash) */
+  [data-reader-mode="reading"] .rm-reading,
+  [data-reader-mode="audit"] .rm-audit {
+    background: var(--paper);
+    color: var(--accent-strong);
+    border-color: var(--accent);
+    box-shadow: 0 1px 3px rgba(20, 28, 45, .12);
+  }
+  [data-reader-mode="audit"] .rm-audit { border-color: var(--status-boundary-border); color: var(--status-boundary-fg); }
+  [data-reader-mode="audit"] .rm-audit .rm-hint { color: var(--status-boundary-fg); }
+
+  /* ---- status legend (scan key; quiet in Reading, prominent in Audit) ---- */
+  .status-legend {
+    margin: 0 0 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+  }
+  .status-legend-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .status-legend-list li { display: flex; align-items: baseline; gap: 8px; margin: 0; }
+  .status-legend-note { font-size: .76rem; color: var(--cite); line-height: 1.35; }
+
+  /* ---- per-page footer metadata ---- */
+  .doc-footer {
+    margin-top: 3em;
+    padding-top: 1.1em;
+    border-top: 1px solid var(--rule);
+    font-size: .82rem;
+    color: var(--cite);
+  }
+  .doc-footer-meta { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+  .doc-footer-item b { color: var(--ink-soft); font-weight: 600; }
+  .doc-footer-item code {
+    font-size: .9em;
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: .02em .4em;
+    color: var(--ink-soft);
+  }
+  .doc-footer-item a { color: var(--accent); font-weight: 600; }
+  .doc-footer .muted { color: var(--cite); }
+  .doc-footer-note { margin-top: .7em; line-height: 1.55; }
+
+  /* =================== AUDIT MODE: make checkable elements stand out =================== */
+  /* source references → filled, bolder, scannable */
+  [data-reader-mode="audit"] .source-ref {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent-strong);
+    box-shadow: 0 0 0 2px var(--accent-soft);
+  }
+  [data-reader-mode="audit"] .source-ref:hover,
+  [data-reader-mode="audit"] .source-ref:focus-visible {
+    background: var(--accent-strong);
+    color: #fff;
+  }
+
+  /* status pills → thicker, slightly larger, easier to scan */
+  [data-reader-mode="audit"] code.status-pill {
+    font-size: .86em;
+    border-width: 2px;
+    padding: .1em .6em;
+    box-shadow: 0 1px 2px rgba(20, 28, 45, .12);
+  }
+
+  /* boundary / misconception / warning callouts → prominent (tinted fill + heavier rail) */
+  [data-reader-mode="audit"] .callout { border-left-width: 6px; }
+  [data-reader-mode="audit"] .callout-boundary,
+  [data-reader-mode="audit"] .callout-misconception {
+    background: var(--status-boundary-bg);
+    color: var(--status-boundary-fg);
+    border-left-width: 7px;
+    box-shadow: 0 1px 8px rgba(138, 31, 31, .12);
+  }
+  [data-reader-mode="audit"] .callout-boundary strong,
+  [data-reader-mode="audit"] .callout-misconception strong { color: var(--status-boundary-fg); }
+  [data-reader-mode="audit"] .callout-warning {
+    background: var(--status-beta-bg);
+    color: var(--status-beta-fg);
+    border-left-width: 7px;
+    box-shadow: 0 1px 8px rgba(122, 74, 0, .12);
+  }
+  [data-reader-mode="audit"] .callout-warning strong { color: var(--status-beta-fg); }
+  [data-reader-mode="audit"] .callout-summary { border-left-width: 6px; }
+
+  /* reader tools panel + TOC → distinct audit framing */
+  [data-reader-mode="audit"] .reader-tools-inner {
+    border-top-color: var(--status-boundary-border);
+    border-top-width: 3px;
+  }
+  [data-reader-mode="audit"] .status-legend {
+    background: var(--status-boundary-bg);
+    border: 1px solid var(--status-boundary-border);
+    border-radius: 8px;
+    padding: 10px;
+  }
+  [data-reader-mode="audit"] .status-legend-title { color: var(--status-boundary-fg); }
+  [data-reader-mode="audit"] .toc {
+    border-top-color: var(--accent);
+    border-top-width: 2px;
+  }
+  [data-reader-mode="audit"] .toc-list a:hover { color: var(--accent-strong); }
+
+  /* footer + cover source metadata → easier to spot in audit */
+  [data-reader-mode="audit"] .doc-footer {
+    border-top-color: var(--accent);
+    border-top-width: 2px;
+    color: var(--ink-soft);
+  }
+  [data-reader-mode="audit"] .doc-footer-item code { border-color: var(--accent); }
+  [data-reader-mode="audit"] .cover .meta {
+    outline: 1px dashed rgba(255, 255, 255, .55);
+    outline-offset: 6px;
+    border-radius: 4px;
+  }
+}
+
+/* Reduced-motion: the mode toggle uses only color/shadow transitions; honor the preference. */
+@media (prefers-reduced-motion: reduce) {
+  .rm-btn, .source-ref { transition: none; }
+}

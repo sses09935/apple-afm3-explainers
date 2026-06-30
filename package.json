@@ -1,0 +1,28 @@
+{
+  "name": "apple-afm3-explainers",
+  "version": "2.0.0",
+  "private": true,
+  "description": "第三代 Apple Foundation Models（AFM 3）+ PCC on Google Cloud 受眾分眾白皮書（繁中＋英文雙語，只引 Apple 官方與合作方官方來源；非官方科普）",
+  "license": "Apache-2.0",
+  "author": "Nick Lian (github.com/sses09935)",
+  "type": "module",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "build:web": "node build/build.mjs web",
+    "check": "node build/check-sources.mjs",
+    "check:links": "node build/check-links.mjs",
+    "check:links:external": "node build/check-links.mjs --external",
+    "debug:web": "node build/debug-web.mjs",
+    "verify": "node build/check-sources.mjs && node build/check-links.mjs && node build/build.mjs",
+    "deploy": "firebase deploy --only hosting --project apple-afm3-explainers"
+  },
+  "devDependencies": {
+    "firebase-tools": "^15.21.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-attrs": "^4.3.1",
+    "playwright": "^1.49.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

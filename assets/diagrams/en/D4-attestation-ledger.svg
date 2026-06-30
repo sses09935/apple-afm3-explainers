@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 350" font-family="-apple-system,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Attestation and append-only ledger chain">
+  <defs>
+    <style>.t{fill:#16181d}.s{fill:#3c4049;font-size:12px}.lbl{font-size:13px;font-weight:700}.src{font-size:10.5px;fill:#5b6472}</style>
+    <marker id="ar4" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0b5fd4"/></marker>
+  </defs>
+  <text x="20" y="28" class="t" font-size="16" font-weight="700">Attestation + append-only ledger: devices connect only to logged nodes</text>
+
+  <rect x="30" y="120" width="150" height="90" rx="12" fill="#e9f1fd" stroke="#0b5fd4" stroke-width="1.5"/>
+  <text x="105" y="150" text-anchor="middle" class="lbl t">Apple device</text>
+  <text x="105" y="172" text-anchor="middle" class="s">before sending,</text>
+  <text x="105" y="190" text-anchor="middle" class="s">verifies the node</text>
+
+  <rect x="230" y="100" width="180" height="130" rx="12" fill="#f7faff" stroke="#0b5fd4" stroke-dasharray="5 4"/>
+  <text x="320" y="124" text-anchor="middle" class="lbl t">attestation check</text>
+  <rect x="248" y="138" width="144" height="38" rx="7" fill="#dbe9ff" stroke="#0b2a4a"/>
+  <text x="320" y="162" text-anchor="middle" class="s">root of trust A (vendor 1)</text>
+  <rect x="248" y="182" width="144" height="38" rx="7" fill="#dbe9ff" stroke="#0b2a4a"/>
+  <text x="320" y="206" text-anchor="middle" class="s">root of trust B (vendor 2)</text>
+
+  <rect x="460" y="90" width="270" height="150" rx="12" fill="#eef2f7" stroke="#5b6472" stroke-width="1.5"/>
+  <text x="476" y="114" class="lbl t">append-only ledger</text>
+  <text x="476" y="132" class="src">cryptographically verifiable · anti supply-chain</text>
+  <g>
+    <rect x="476" y="142" width="238" height="24" rx="4" fill="#fff" stroke="#5b6472"/><text x="486" y="159" class="s">image v3 ✓ logged</text>
+    <rect x="476" y="170" width="238" height="24" rx="4" fill="#fff" stroke="#5b6472"/><text x="486" y="187" class="s">image v2 ✓ logged</text>
+    <rect x="476" y="198" width="238" height="24" rx="4" fill="#fff" stroke="#5b6472"/><text x="486" y="215" class="s">image v1 ✓ logged (append-only)</text>
+  </g>
+
+  <path d="M182,165 L228,165" stroke="#0b5fd4" stroke-width="2" marker-end="url(#ar4)"/>
+  <path d="M412,165 L458,165" stroke="#0b5fd4" stroke-width="2" marker-end="url(#ar4)"/>
+
+  <text x="30" y="276" class="s"><tspan font-weight="700">Pass</tspan>: measurements match a logged release and keys are protected by a hardware root of trust → connect.</text>
+  <text x="30" y="298" class="s"><tspan font-weight="700">Fail</tspan>: the device refuses to send data.</text>
+  <text x="30" y="328" class="src">two roots of trust KB-049 · ledger KB-048 · attestation KB-108 / transparency log KB-107 [S02][S-PCC1]</text>
+</svg>

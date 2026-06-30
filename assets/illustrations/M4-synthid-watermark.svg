@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="'PingFang TC','Noto Sans CJK TC','Noto Sans TC',sans-serif" role="img" aria-label="SynthID 隱形浮水印">
+  <defs>
+    <style>.t{fill:#2a2017}.s{fill:#574b3e;font-size:13px}.lbl{font-size:14px;font-weight:700;fill:#2a2017}</style>
+    <pattern id="wm" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+      <text x="0" y="22" font-size="13" fill="#b8470a" opacity="0.22">SynthID</text>
+    </pattern>
+  </defs>
+  <text x="20" y="30" class="t" font-size="17" font-weight="700">AI 生成／編輯的圖，會被打上看不見的浮水印</text>
+
+  <!-- generated image frame -->
+  <rect x="60" y="64" width="300" height="210" rx="12" fill="#f29c33"/>
+  <circle cx="150" cy="150" r="34" fill="#ffe1b0"/>
+  <path d="M60,250 L160,170 L230,224 L300,150 L360,210 L360,274 L60,274 z" fill="#e8730c"/>
+  <rect x="60" y="64" width="300" height="210" rx="12" fill="url(#wm)"/>
+  <rect x="60" y="64" width="300" height="210" rx="12" fill="none" stroke="#b8470a" stroke-width="2"/>
+  <text x="210" y="296" text-anchor="middle" class="s">由 Apple Intelligence 生成／編輯的影像</text>
+
+  <!-- explanation -->
+  <g>
+    <rect x="410" y="80" width="320" height="58" rx="10" fill="#fdf0e3" stroke="#e8730c"/>
+    <text x="426" y="104" class="lbl">看不見，但驗得出</text>
+    <text x="426" y="126" class="s">浮水印藏在像素裡，肉眼看不到 · KB-032</text>
+  </g>
+  <g>
+    <rect x="410" y="150" width="320" height="58" rx="10" fill="#fdf0e3" stroke="#e8730c"/>
+    <text x="426" y="174" class="lbl">這是 Google 的技術</text>
+    <text x="426" y="196" class="s">名為 SynthID（Google DeepMind）· KB-034</text>
+  </g>
+  <g>
+    <rect x="410" y="220" width="320" height="58" rx="10" fill="#fdf0e3" stroke="#e8730c"/>
+    <text x="426" y="244" class="lbl">Image Playground 也帶它</text>
+    <text x="426" y="266" class="s">你做的圖同樣會被標記 · KB-033</text>
+  </g>
+
+  <text x="380" y="312" text-anchor="middle" class="s">對應 KB-032、KB-034 [S04]（SynthID 為 Google 技術）</text>
+</svg>

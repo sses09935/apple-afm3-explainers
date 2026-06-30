@@ -1,0 +1,69 @@
+{
+  "pdf": {
+    "format": "A4",
+    "printBackground": true,
+    "preferCSSPageSize": true
+  },
+  "documents": [
+    {
+      "id": "dev",
+      "lang": "zh-Hant",
+      "draft": "content/drafts/dev.md",
+      "theme": "design/theme-dev.css",
+      "title": "第三代 Apple Foundation Models 與 PCC on Google Cloud",
+      "audience": "開發者版",
+      "out": "dist/AFM3-開發者版.pdf",
+      "webFile": "dev.html"
+    },
+    {
+      "id": "ai-user",
+      "lang": "zh-Hant",
+      "draft": "content/drafts/ai-user.md",
+      "theme": "design/theme-ai-user.css",
+      "title": "第三代 Apple Foundation Models 與 PCC on Google Cloud",
+      "audience": "AI 使用者版",
+      "out": "dist/AFM3-AI使用者版.pdf",
+      "webFile": "ai-user.html"
+    },
+    {
+      "id": "general",
+      "lang": "zh-Hant",
+      "draft": "content/drafts/general.md",
+      "theme": "design/theme-general.css",
+      "title": "Apple 的新 AI，跟我有什麼關係？",
+      "audience": "普羅大眾版",
+      "out": "dist/AFM3-普羅大眾版.pdf",
+      "webFile": "general.html"
+    },
+    {
+      "id": "dev-en",
+      "lang": "en",
+      "draft": "content/drafts/en/dev.md",
+      "theme": "design/theme-dev.css",
+      "title": "Apple's Third-Generation Foundation Models & PCC on Google Cloud",
+      "audience": "Developer Edition",
+      "out": "dist/AFM3-Developer.pdf",
+      "webFile": "dev-en.html"
+    },
+    {
+      "id": "ai-user-en",
+      "lang": "en",
+      "draft": "content/drafts/en/ai-user.md",
+      "theme": "design/theme-ai-user.css",
+      "title": "Apple's Third-Generation Foundation Models & PCC on Google Cloud",
+      "audience": "AI-User Edition",
+      "out": "dist/AFM3-AI-User.pdf",
+      "webFile": "ai-user-en.html"
+    },
+    {
+      "id": "general-en",
+      "lang": "en",
+      "draft": "content/drafts/en/general.md",
+      "theme": "design/theme-general.css",
+      "title": "Apple's New AI: What It Means for You",
+      "audience": "General Edition",
+      "out": "dist/AFM3-General.pdf",
+      "webFile": "general-en.html"
+    }
+  ]
+}

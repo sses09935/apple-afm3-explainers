@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" font-family="-apple-system,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="PCC on Google Cloud trust stack">
+  <defs><style>.t{fill:#16181d}.s{fill:#3c4049;font-size:12px}.lbl{font-size:13.5px;font-weight:700}.src{font-size:10.5px;fill:#5b6472}</style></defs>
+  <text x="20" y="28" class="t" font-size="16" font-weight="700">PCC on Google Cloud — confidential-inference trust stack</text>
+
+  <rect x="40" y="50" width="680" height="46" rx="9" fill="#0b2a4a"/>
+  <text x="58" y="71" fill="#fff" class="lbl">Apple retains complete control over PCC software</text>
+  <text x="58" y="88" fill="#cfe0f5" font-size="12">devices trust only Apple cryptographically approved PCC software · KB-051 [S02]</text>
+
+  <rect x="40" y="110" width="680" height="180" rx="10" fill="#f7faff" stroke="#0b5fd4" stroke-dasharray="6 4"/>
+  <text x="56" y="132" class="lbl t">Protected CPU → GPU compute path (data-in-use protected end to end)</text>
+
+  <rect x="60" y="150" width="300" height="120" rx="10" fill="#e9f1fd" stroke="#0b5fd4" stroke-width="1.5"/>
+  <text x="76" y="174" class="lbl t">Intel CPUs with TDX</text>
+  <text x="76" y="194" class="s">CPU-side confidential VM / trusted exec</text>
+  <text x="76" y="212" class="s">VM isolation · memory protection</text>
+  <text x="76" y="236" class="src">Apple does not say the model runs mainly on CPU</text>
+  <text x="76" y="254" class="src">KB-039 [S02][S13]</text>
+
+  <rect x="400" y="150" width="300" height="120" rx="10" fill="#e9f1fd" stroke="#0b5fd4" stroke-width="1.5"/>
+  <text x="416" y="174" class="lbl t">NVIDIA GPUs (Blackwell) + CC</text>
+  <text x="416" y="194" class="s">carry server-side inference</text>
+  <text x="416" y="212" class="s">GPU confidential inference · data-in-use</text>
+  <text x="416" y="236" class="src">attributed: Apple / Google Cloud / NVIDIA</text>
+  <text x="416" y="254" class="src">KB-038 [S02][S13][S14]</text>
+
+  <path d="M360,210 L400,210" stroke="#0b5fd4" stroke-width="2.5"/>
+  <path d="M392,204 L402,210 L392,216 z" fill="#0b5fd4"/>
+
+  <rect x="40" y="304" width="680" height="50" rx="9" fill="#dbe9ff" stroke="#0b2a4a" stroke-width="1.5"/>
+  <text x="58" y="326" class="lbl t">Google Titan chip (Titanium architecture) — hardware root of trust</text>
+  <text x="58" y="343" class="src">ensures boot-process and platform integrity · attributed: Apple / Google Cloud · KB-040 [S02][S13]</text>
+
+  <text x="40" y="376" class="s">Trusted computing base includes firmware / host+guest OS / app code,</text>
+  <text x="40" y="394" class="s">under verifiable transparency &amp; no-privileged-access. KB-047 [S02]</text>
+</svg>

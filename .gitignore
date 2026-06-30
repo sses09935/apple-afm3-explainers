@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+# package-lock.json is committed for reproducible `npm ci` in CI
+
+# build intermediates (HTML rendered from Markdown before PDF)
+build/.cache/
+*.tmp.html
+
+# firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+.runtimeconfig.json
+
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# PDFs and web HTML are build artifacts — regenerate with `node build/build.mjs`.
+# Keep dist/ tracked-empty via .gitkeep; ignore generated output.
+dist/*.pdf
+dist/web/
+
+# local visual evidence (screenshots) — regenerate on demand, not committed
+artifacts/

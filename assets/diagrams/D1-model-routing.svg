@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="'PingFang TC','Noto Sans CJK TC','Noto Sans TC',sans-serif" role="img" aria-label="五模型路由圖">
+  <defs>
+    <style>
+      .t{fill:#16181d}.s{fill:#3c4049;font-size:12px}.lbl{font-size:13px;font-weight:700}
+      .box{rx:10;ry:10;stroke-width:1.5}
+      .dev{fill:#e9f1fd;stroke:#0b5fd4}.cloud{fill:#eef2f7;stroke:#5b6472}
+      .pro{fill:#dbe9ff;stroke:#0b2a4a}
+    </style>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#0b5fd4"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="28" class="t" font-size="16" font-weight="700">第三代 Apple Foundation Models — 五模型與部署</text>
+
+  <!-- prompt -->
+  <rect x="330" y="55" width="100" height="42" rx="10" fill="#0b5fd4"/>
+  <text x="380" y="81" text-anchor="middle" fill="#fff" class="lbl">使用者請求</text>
+
+  <!-- device side -->
+  <rect x="30" y="130" width="320" height="220" rx="12" fill="#f7faff" stroke="#0b5fd4" stroke-dasharray="5 4"/>
+  <text x="46" y="155" class="lbl t">端側 · Apple silicon</text>
+
+  <rect x="50" y="172" width="280" height="58" class="box dev"/>
+  <text x="64" y="196" class="lbl t">AFM 3 Core</text>
+  <text x="64" y="216" class="s">端側基本款（前代 3B dense 的下一代）</text>
+
+  <rect x="50" y="244" width="280" height="86" class="box dev"/>
+  <text x="64" y="268" class="lbl t">AFM 3 Core Advanced</text>
+  <text x="64" y="288" class="s">最強端側 · 20B sparse · 每次啟用 1–4B</text>
+  <text x="64" y="306" class="s">multimodal · expressive voice · dictation</text>
+
+  <!-- cloud side -->
+  <rect x="410" y="130" width="320" height="220" rx="12" fill="#f6f7f9" stroke="#5b6472" stroke-dasharray="5 4"/>
+  <text x="426" y="155" class="lbl t">Private Cloud Compute（PCC）</text>
+
+  <rect x="430" y="170" width="280" height="46" class="box cloud"/>
+  <text x="444" y="190" class="lbl t">AFM 3 Cloud</text>
+  <text x="444" y="207" class="s">server 主力 · speed/efficiency</text>
+
+  <rect x="430" y="222" width="280" height="46" class="box cloud"/>
+  <text x="444" y="242" class="lbl t">ADM 3 Cloud（Image）</text>
+  <text x="444" y="259" class="s">影像生成／編輯 · Image Playground</text>
+
+  <rect x="430" y="274" width="280" height="64" class="box pro"/>
+  <text x="444" y="294" class="lbl t">AFM 3 Cloud Pro</text>
+  <text x="444" y="312" class="s">最強 · agentic / 複雜推理</text>
+  <text x="444" y="329" class="s">Google Cloud NVIDIA GPU</text>
+
+  <!-- arrows -->
+  <path d="M360,82 C250,100 200,120 190,168" fill="none" stroke="#0b5fd4" stroke-width="1.6" marker-end="url(#ar)"/>
+  <path d="M400,82 C520,100 560,120 565,166" fill="none" stroke="#0b5fd4" stroke-width="1.6" marker-end="url(#ar)"/>
+
+  <text x="380" y="372" text-anchor="middle" class="s">前四模型 purpose-built for Apple silicon；Cloud Pro 擴展到 Google Cloud（NVIDIA GPU）。對應 KB-001–007 [S01]</text>
+</svg>

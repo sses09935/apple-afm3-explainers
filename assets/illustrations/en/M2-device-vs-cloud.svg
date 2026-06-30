@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="-apple-system,'Helvetica Neue',Arial,sans-serif" role="img" aria-label="Phone vs cloud">
+  <defs>
+    <style>.t{fill:#2a2017}.s{fill:#574b3e;font-size:13px}.lbl{font-size:15px;font-weight:700;fill:#2a2017}</style>
+    <marker id="arm" markerWidth="11" markerHeight="11" refX="9" refY="5.5" orient="auto"><path d="M0,0 L11,5.5 L0,11 z" fill="#e8730c"/></marker>
+  </defs>
+  <text x="20" y="30" class="t" font-size="17" font-weight="700">Simple things on the phone, hard things to the cloud</text>
+
+  <rect x="60" y="80" width="150" height="210" rx="22" fill="#fdf0e3" stroke="#e8730c" stroke-width="2.5"/>
+  <rect x="78" y="104" width="114" height="150" rx="8" fill="#fff7ee"/>
+  <circle cx="135" cy="272" r="9" fill="#e8730c"/>
+  <text x="135" y="180" text-anchor="middle" font-size="44">📱</text>
+  <text x="135" y="312" text-anchor="middle" class="lbl">Your device</text>
+
+  <rect x="250" y="96" width="230" height="46" rx="10" fill="#fff7ee" stroke="#e8730c"/>
+  <text x="266" y="124" class="s">simple requests → handled locally</text>
+  <rect x="250" y="200" width="230" height="46" rx="10" fill="#fdf0e3" stroke="#b8470a"/>
+  <text x="266" y="228" class="s">hard requests → sent to the cloud</text>
+
+  <g>
+    <ellipse cx="630" cy="150" rx="90" ry="52" fill="#f29c33"/>
+    <ellipse cx="585" cy="165" rx="55" ry="35" fill="#f29c33"/>
+    <ellipse cx="675" cy="165" rx="55" ry="35" fill="#f29c33"/>
+    <text x="630" y="158" text-anchor="middle" font-size="34">☁️</text>
+  </g>
+  <text x="630" y="232" text-anchor="middle" class="lbl">Secure cloud (PCC)</text>
+  <text x="630" y="254" text-anchor="middle" class="s">content not stored or shared</text>
+  <text x="630" y="272" text-anchor="middle" class="s">invisible even to Apple</text>
+
+  <path d="M482,220 C512,216 528,203 538,188" fill="none" stroke="#e8730c" stroke-width="2.4" marker-end="url(#arm)"/>
+  <text x="380" y="350" text-anchor="middle" class="s">The model sits in phone storage and is pulled in only when needed. KB-001, KB-008, KB-016 [S01]</text>
+</svg>

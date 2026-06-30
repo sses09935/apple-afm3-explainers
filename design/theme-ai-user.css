@@ -1,0 +1,38 @@
+/* theme-ai-user.css — AI 使用者版：友善的青綠，適度留白 */
+:root {
+  --accent: #0a8f7a;
+  --accent-soft: #e6f6f2;
+  --ink: #1b2420;
+  --ink-soft: #41514b;
+  --rule: #d6e2de;
+  --code-bg: #eef6f3;
+  --cite: #5f6f6a;
+  --cover-bg: linear-gradient(135deg, #06463c 0%, #0a8f7a 100%);
+  --cover-fg: #ffffff;
+  --accent-strong: #06695a;
+}
+html { font-size: 11pt; }
+body { line-height: 1.72; }
+/* 指南版式：每個 ## 小節自新頁起，一節一主題，便於逐項對照。
+   # 主線分隔不單獨佔頁（隨後續 ## 一起到新頁頂端）。 */
+/* h2 帶圓角導引標記，像逐項判讀指南的小節 */
+main h2 { break-before: page; }
+main h2::before {
+  content: "";
+  display: inline-block;
+  width: .5em; height: .5em;
+  margin-right: .5em;
+  border-radius: 3px;
+  background: var(--accent);
+  vertical-align: .1em;
+}
+main h1 { break-before: auto; }
+/* callout / 風險判讀卡：圓角、柔和底色，像可勾選的判讀框 */
+blockquote {
+  font-size: .95rem;
+  border-radius: 10px;
+  border-left-width: 5px;
+}
+/* 評估清單：去項目符號、放大勾選框，像實用評估清單 */
+li.task { list-style: none; margin-left: -.4em; }
+li input[type="checkbox"] { transform: scale(1.2); accent-color: var(--accent); margin-right: .55em; }

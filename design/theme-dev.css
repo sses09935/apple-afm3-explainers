@@ -1,0 +1,32 @@
+/* theme-dev.css — 開發者版：冷靜的技術藍／石墨灰，密度高 */
+:root {
+  --accent: #0b5fd4;
+  --accent-soft: #e9f1fd;
+  --ink: #16181d;
+  --ink-soft: #3c4049;
+  --rule: #d2d6dd;
+  --code-bg: #f2f4f8;
+  --cite: #5b6472;
+  --cover-bg: linear-gradient(135deg, #0b2a4a 0%, #0b5fd4 100%);
+  --cover-fg: #ffffff;
+  --accent-strong: #08418f;
+}
+html { font-size: 11pt; }
+h3 { letter-spacing: .01em; }
+/* 技術參考版式：每個 ## 子節自新頁起，便於翻閱與交叉引用 */
+/* h2 帶左側技術導軌 + 底線，像技術文件的章節錨點 */
+main h2 {
+  break-before: page;
+  padding-left: .55em;
+  border-left: 4px solid var(--accent);
+}
+/* 開發者版圖較多，給較緊湊的圖距；圖表容器走工程化冷藍 */
+figure { margin: 1.1em 0; }
+.diagram-figure { background: #fbfcfe; }
+figcaption { font-family: var(--font-mono); font-size: .8rem; }
+/* code / pre 更工程化：左側 accent rail、緊湊 */
+pre { border-left: 3px solid var(--accent); }
+/* source ref 在開發者版略為方正，像可追蹤的引用代碼 */
+.source-ref { border-radius: 5px; }
+/* 技術表格：標題列對比更強 */
+th { letter-spacing: .01em; }

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<title>CJK 渲染 smoke test</title>
+<style>
+  body { font-family: "PingFang TC","Noto Sans CJK TC","Noto Sans TC","Microsoft JhengHei",sans-serif; padding: 24px; line-height: 1.8; }
+  code { background:#f0f0f3; padding:.1em .4em; border-radius:4px; color:#6a6a70; }
+  .big { font-size: 28px; font-weight: 700; }
+  table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:6px 10px}
+</style>
+</head>
+<body>
+  <p class="big">繁體中文渲染測試：豆腐字檢查</p>
+  <p>常用字：第三代蘋果基礎模型與私有雲端運算的隱私保護機制，於二〇二六年六月發布。</p>
+  <p>標點與全形：「引號」、（括號）、《書名》、——破折號、……刪節號、・中點、、頓號。</p>
+  <p>技術詞：機密運算、可信執行環境、證明（attestation）、信任根、僅可追加帳本。</p>
+  <p>易缺字測試：曦、瓊、龘、靐、鱻、犇、繁體「臺灣」與「台灣」。</p>
+  <p>引用樣式：此處應顯示為灰字代碼 <code>[S01]</code>、<code>[S-PCC1]</code>。</p>
+  <p>數字與英數混排：AFM 3 Core Advanced 採 20-billion-parameter sparse 架構，每次啟用 1–4B。</p>
+  <table><tr><th>欄位</th><th>值</th></tr><tr><td>語言</td><td>繁體中文（16 種之一）</td></tr></table>
+  <p>✅ 若以上文字皆正常顯示、無方框「□」或缺字，則 CJK 字型可用。</p>
+</body>
+</html>

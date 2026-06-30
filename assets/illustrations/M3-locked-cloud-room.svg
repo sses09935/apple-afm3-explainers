@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="'PingFang TC','Noto Sans CJK TC','Noto Sans TC',sans-serif" role="img" aria-label="上鎖的雲端房間">
+  <defs><style>.t{fill:#2a2017}.s{fill:#574b3e;font-size:13px}.lbl{font-size:14px;font-weight:700;fill:#2a2017}</style></defs>
+  <text x="20" y="30" class="t" font-size="17" font-weight="700">別人的機房，憑什麼還安全？</text>
+
+  <!-- room -->
+  <rect x="60" y="70" width="320" height="220" rx="14" fill="#fff7ee" stroke="#b8470a" stroke-width="2.5"/>
+  <rect x="60" y="70" width="320" height="40" rx="14" fill="#b8470a"/>
+  <text x="220" y="97" text-anchor="middle" fill="#fff" class="lbl">Google 的機房，但門鎖在 Apple 手上</text>
+
+  <!-- lock -->
+  <g>
+    <rect x="184" y="150" width="72" height="60" rx="8" fill="#e8730c"/>
+    <path d="M196,150 v-14 a24,24 0 0 1 48,0 v14" fill="none" stroke="#e8730c" stroke-width="9"/>
+    <circle cx="220" cy="178" r="9" fill="#fff7ee"/>
+    <rect x="216" y="178" width="8" height="18" fill="#fff7ee"/>
+  </g>
+  <text x="220" y="244" text-anchor="middle" class="s">🔑 裝置只信任 Apple 認可的軟體</text>
+  <text x="220" y="266" text-anchor="middle" class="s">KB-051</text>
+
+  <!-- promises -->
+  <g>
+    <rect x="410" y="84" width="320" height="44" rx="9" fill="#fdf0e3" stroke="#e8730c"/>
+    <text x="426" y="104" class="lbl">🗑️ 用完就丟</text>
+    <text x="426" y="122" class="s">資料只回答這一次，做完不留 · KB-103</text>
+  </g>
+  <g>
+    <rect x="410" y="136" width="320" height="44" rx="9" fill="#fdf0e3" stroke="#e8730c"/>
+    <text x="426" y="156" class="lbl">🙈 沒人能偷看</text>
+    <text x="426" y="174" class="s">維運人員也無法在運作時看你的內容 · KB-105</text>
+  </g>
+  <g>
+    <rect x="410" y="188" width="320" height="44" rx="9" fill="#fdf0e3" stroke="#e8730c"/>
+    <text x="426" y="208" class="lbl">🔍 攤在陽光下</text>
+    <text x="426" y="226" class="s">軟體公開讓外界檢查 · KB-053</text>
+  </g>
+  <g>
+    <rect x="410" y="240" width="320" height="44" rx="9" fill="#fdf0e3" stroke="#e8730c"/>
+    <text x="426" y="260" class="lbl">✅ 五項核心承諾不變</text>
+    <text x="426" y="278" class="s">2024 起就有的隱私架構 · KB-046 / KB-102</text>
+  </g>
+
+  <text x="380" y="324" text-anchor="middle" class="s">對應 KB-046、KB-051、KB-103、KB-105 [S02][S-PCC1]</text>
+</svg>
